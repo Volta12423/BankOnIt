@@ -5,8 +5,7 @@ public class bankOnIt implements HasMenu, Serializable{
 	public static void main(String args[]){
 		CheckingAccount ca = new CheckingAccount();
 		ca.start();
-		Scanner ui = new Scanner(System.in);
-		if(user()){
+		if(user("Alice", 1111)){
 			System.out.println("Login successful\nCustomer menu\n\n");
 			menu();
 		}//end if statement
@@ -17,8 +16,10 @@ public class bankOnIt implements HasMenu, Serializable{
 		String nameGuess = ui.nextLine();
 		System.out.print("\nPIN: ");
 		int pinGuess = ui.nextInt();
-		if((nameGuess.equals(Customer.userName)) && (pinGuess==Customer.pin){
+		if((nameGuess.equals(Customer.userName)) && (pinGuess==Customer.pin)){
 			return true;
+		}else{
+			return false;
 		}//end if statement
 	}//end user
 	
@@ -40,9 +41,8 @@ public class bankOnIt implements HasMenu, Serializable{
 		return response;
 	}
 	
-	public void start(){
+	public void start(String response){
 		boolean keepGoing = true;
-		String response;
 		while(keepGoing){
 			response = menu();
 			if(response.equals("0")){
@@ -58,7 +58,7 @@ public class bankOnIt implements HasMenu, Serializable{
 			}//end if
 		}//end while
 	}//end start
-
+	
 	public Customer(){
 		this.userName = "Alice";
 		this.PIN = "1111";
