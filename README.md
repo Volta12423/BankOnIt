@@ -43,14 +43,39 @@ direction TB
 	    + menu() : String
 	    + start() : void
     }
+    
+    class Admin {
+		+ Admin()
+		+ menu(): String
+		+ getReport(): String
+	}
+
+    class Bank {
+		- admin: Admin
+		- customers: ArrayList
+		+ Bank(): void
+		+ loadSampleCustomers(): void
+		+ loadCustomers(): void
+		+ saveCustomers(): void
+		+ fillCustomerReport(): void
+		+ addUser(): void
+		+ applyInterest(): void
+		+ loginAsCustomer(): void
+		+ menu(): void
+		+ start(): void
+		+ startAdmin(): void
+    }
 
     class Customer {
         - checking : checkingAccount
-        - savings : SavingsAccount
-        
+        - savings : SavingsAccount    
     }
+
     HasMenu <|-- CheckingAccount
     HasMenu <|-- User
     CheckingAccount <|-- SavingsAccount
     User <|-- Customer
+    User <|-- Admin
+    Admin <|-- Bank
+    Customer <|-- Bank
 '''
