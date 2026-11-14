@@ -9,8 +9,11 @@ public class bankOnIt implements HasMenu{
 	}//end main
 	
 	public Bank(){
-		this.loadSampleCustomers();
+		//this.loadSampleCustomers();
+		//this.loadCustomers();
+		this.saveCustomers();
 		this.start();
+		this.saveCustomers();
 	}//end constructor
 	
 	public String menu(){
@@ -113,6 +116,29 @@ public class bankOnIt implements HasMenu{
 			currentCustomer.start();
 		}//end if
 	}//end loginAsCustomer
+	
+	public void saveCustomers(){
+		try{
+			fileOutputStream fo = new FileOutputStream("Customers.dat");
+			ObjectOutputStream obOut = new ObjectOutputStream(fo);
+			object.writeObject(customers);
+			obOut.close();
+			fo.close();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}//end try
+	}//end saveCustomers
+
+	public void loadCustomers(){
+		try{
+			FileInputStream fi = new FileInputStrean("Customers.dat");
+			ObjectInputStream obIn = new ObjectInputStream(fi);
+			customers = (CustomerList)obIn.readObject();
+			obIn.close();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}//end try
+	}//end loadCustomers
 
 	/*
 	double balance;
